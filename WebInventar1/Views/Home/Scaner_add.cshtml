@@ -1,0 +1,135 @@
+﻿@model WebInventar1.Models.Scaner
+@{
+    ViewBag.Title = "Scaner";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Сканер
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Сканер</h2>
+                    </div>
+                    <div class="box-content">
+                        @using (Html.BeginForm())
+                        {
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                @Html.ValidationSummary()
+                                @Html.HiddenFor(m => m.Id)
+                                <tr>
+                                    <td>
+                                        Инвентарный номер:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_inv)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Наименование:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_name)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Тип сканера:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_type)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Оптическое разрешение:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_optical)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Интерфейс подключения:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_interface)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Формат документов:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Document_size)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Питание сканера:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Scan_power)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Кабинет:
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Cab)
+                                    </td>
+                                </tr>
+                            </table>
+                            <p><input type="submit" value="Добаить" class="btn btn-success" /></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

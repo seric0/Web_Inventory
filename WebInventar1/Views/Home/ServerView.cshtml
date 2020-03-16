@@ -1,0 +1,388 @@
+﻿@model IEnumerable<WebInventar1.Models.ServerWithDetail>
+@{
+    ViewBag.Title = "Server";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Сервер
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Сервер</h2>
+                    </div>
+                    <div class="box-content">
+                        @foreach (var Model in Model)
+                        {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            <tr>
+                                <td>
+                                    Наименование сервера
+                                </td>
+                                <td>
+                                    @Model.Server_type.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Отделение:
+                                </td>
+                                <td>
+                                    @Model.Otdel.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Серверная комната:
+                                </td>
+                                <td>
+                                    @Model.Server_room.Name_cab
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО администратора:
+                                </td>
+                                <td>
+                                    @Model.Worker.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Телефон:
+                                </td>
+                                <td>
+                                    @Model.Server.Phone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО ответ.лица:
+                                </td>
+                                <td>
+                                    @Model.Worker.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Серийный номер:
+                                </td>
+                                <td>
+                                    @Model.Server.Server_sn
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Инвентарный номер:
+                                </td>
+                                <td>
+                                    @Model.Server.Server_inv
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество процессоров:
+                                </td>
+                                <td>
+                                    @Model.Server.Cpu_col
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество дисков:
+                                </td>
+                                <td>
+                                    @Model.Server.Hdd_col
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип стримера:
+                                </td>
+                                <td>
+                                    @Model.Server_strimer.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Видео:
+                                </td>
+                                <td>
+                                    @Model.Server_video.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество сетевых карт:
+                                </td>
+                                <td>
+                                    @Model.Server_ethernet.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Скорость сетевых карт:
+                                </td>
+                                <td>
+                                    @Model.Server.Ethernet_sp
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (серийный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Mon_bl_sn
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Mon_bl_inv
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Принтер (серийный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Printer_sn
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Принтер (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Printer_inv
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Иточник бесперебойного питания (серийный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Ibp_sn
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Иточник бесперебойного питания (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Model.Server.Ibp_inv
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО мат.лица:
+                                </td>
+                                <td>
+                                    @Model.Worker.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО руководителя отделения::
+                                </td>
+                                <td>
+                                    @Model.Worker.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата поставки сервера:
+                                </td>
+                                <td>
+                                    @Model.Server.Data
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Модель сервера:
+                                </td>
+                                <td>
+                                    @Model.Server_model.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип процессора:
+                                </td>
+                                <td>
+                                    @Model.Server_cpu.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Частота процессора:
+                                </td>
+                                <td>
+                                    @Model.Proc_ch.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип жеского диска:
+                                </td>
+                                <td>
+                                    @Model.Server_hdd_type.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Объем жеского диска:
+                                </td>
+                                <td>
+                                    @Model.Hdd_ob.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наличие DVD-привода:
+                                </td>
+                                <td>
+                                    @Model.Server_dvd.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип DVD-привода:
+                                </td>
+                                <td>
+                                    @Model.Server_dvd_sp.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Скорость чтения DVD-привода:
+                                </td>
+                                <td>
+                                    @Model.Server_dvd_type.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Объем оперативной памяти:
+                                </td>
+                                <td>
+                                    @Model.Ram_ob.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наличие звукой карты:
+                                </td>
+                                <td>
+                                    @Model.Server_sound.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип видеокарты:
+                                </td>
+                                <td>
+                                    @Model.Server_video_type.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (модель):
+                                </td>
+                                <td>
+                                    @Model.Monitor_name.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (размер):
+                                </td>
+                                <td>
+                                    @Model.Monitor_size.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Принтер (модель):
+                                </td>
+                                <td>
+                                    @Model.Printer_name.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Иточник бесперебойного питания (модель):
+                                </td>
+                                <td>
+                                    @Model.Ibp.Ibp_name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Клавиатура (тип подключения):
+                                </td>
+                                <td>
+                                    @Model.Input_type.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Мышь (тип подключения):
+                                </td>
+                                <td>
+                                    @Model.Input_type.Name
+                                </td>
+                            </tr>
+                        </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

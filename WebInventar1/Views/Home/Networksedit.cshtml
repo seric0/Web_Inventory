@@ -1,0 +1,259 @@
+﻿@model WebInventar1.Models.Network
+@{
+    ViewBag.Title = "Component";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+@section scripts{
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $.validator.addMethod('date',
+            function (value, element) {
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd.mm.yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+        });    
+    </script>
+    <script>
+        $(function () {
+            $("#Data").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#Data2").datepicker();
+            });
+    </script>
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Сетевое оборудование
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Сетевое оборудование</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(m => m.SetiId)
+                            <tr>
+                                <td>
+                                    Структурное подразделение
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Str_pod, ViewBag.Otdels as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Fio, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Должность:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Dolg)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кабинет:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Cabinet, ViewBag.Cabinets as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Телефон:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Phone)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата установки:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Data)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Сетевое оборудование (Серийный номер):
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Activ_sn)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Сетевое оборудование (Инвентарный номер):
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Activ_inv)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Описание:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Notice)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ip адрес:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Ip)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Площадка размещения:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Platform, ViewBag.Platforms as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Руководитель подразделения:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Rukov_podr, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Руководитель хозяйственной части:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Rukov_xc, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Паспорт заполнил:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Pasport, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата заполнения:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Data2)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наименование оборудования:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Net_nId, ViewBag.Network_hard_names as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип оборудования:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Net_tId, ViewBag.Network_hard_types as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество портов:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Net_pId, ViewBag.Network_hard_ports as SelectList)
+                                </td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="Изменить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

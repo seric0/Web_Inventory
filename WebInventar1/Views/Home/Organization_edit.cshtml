@@ -1,0 +1,143 @@
+﻿@model WebInventar1.Models.Organization
+@{
+    ViewBag.Title = "Organization";
+    Layout = "~/Views/Shared/_Layout_spr.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Данные организации
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Данные организации</h2>
+                    </div>
+                    <div class="box-content">
+                        @using (Html.BeginForm())
+                        {
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                @Html.ValidationSummary()
+                                @Html.HiddenFor(m => m.Id)
+                                <tr>
+                                    <td>
+                                        Наименование
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Name_org)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Фактический адрес:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Adres_org)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ФИО рукводителя:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Fio_rukov)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Должность рукводителя:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Dolg_rukov)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ФИО заместителя:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Fio_zam)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Должность заместителя:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Dolg_zam)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ФИО программиста:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Fio_admin)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Должность:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Dolg_admin)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email:
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(x => x.Email)
+                                    </td>
+                                </tr>
+                            </table>
+                            <p><input type="submit" value="Изменить" class="btn btn-success" /></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

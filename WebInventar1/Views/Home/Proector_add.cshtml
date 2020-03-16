@@ -1,0 +1,135 @@
+﻿@model WebInventar1.Models.Proector
+@{
+    ViewBag.Title = "Proector";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Сканер
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Сканер</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(m => m.Id)
+                            <tr>
+                                <td>
+                                    Инвентарный номер:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_inv)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кабинет:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Cab)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наименование:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_name)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Яркость:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_luminous_flux)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Контрастность:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_contrast)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Проекционная система:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_texnology)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Поддерживаемое разрешение:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_optimal)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип подключения:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Proector_connect)
+                                </td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="Добаить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

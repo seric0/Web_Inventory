@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                Главная
+            </li>            
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">                
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">                
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">                
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">                
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">                
+                <div class="box-content row">
+                    <div class="col-lg-7 col-md-12">
+                        <h1>
+                            WebInventar<br>
+                            <small>Добро пожаловать в приложение @ViewBag.user.</small>
+                        </h1>
+                        <p>
+                            WebInventar программа для простого проведения инвентаризации.
+                            Ведет минимальный учет, реализует движение, списание, печать итогового отчета.
+                            Поддерживает различные фильтры для быстрого поиска.
+                        </p>
+
+                        <p>
+                            <b>
+                                Изменения в версии 1.0:
+                                <br>
+                                - Изменен интерфейс приложения.
+                                <br>
+                                - Добавлен поиск по инвентарному номеру, кабинету в модуле Компьютеры.
+                                <br>
+                                - Во всех разделах выводиться общее количество компьютеров, ноутбуков, принтеров и комплектующих.
+                            </b>
+                         </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        
+<!-- content ends -->

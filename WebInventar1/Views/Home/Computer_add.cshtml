@@ -1,0 +1,407 @@
+﻿@model WebInventar1.Models.Computer
+@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+@section scripts{
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $.validator.addMethod('date',
+            function (value, element) {
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd.mm.yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+        });    
+    </script>
+    <script>
+        $(function () {
+            $("#Data2").datepicker();
+        });
+    </script>
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Добавление компьютера
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Добавление компьютера</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm("Computer_add", "Home", FormMethod.Post))
+                    {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(m => m.CompID)
+                            <tr>
+                                <td>
+                                    Структурное подразделение
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Otdel_id, ViewBag.Otdels as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Name, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Должность:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Dolgnost, ViewBag.Positions as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кабинет:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Cab, ViewBag.Cabinets as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата выпуска:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Data, new List<SelectListItem>
+                                             { new SelectListItem{Text="1998 и ранее", Value="1998"},
+                                             new SelectListItem{Text="1999", Value="1999"},
+                                             new SelectListItem{Text="2000", Value="2000"},
+                                             new SelectListItem{Text="2001", Value="2001"},
+                                             new SelectListItem{Text="2002", Value="2002"},
+                                             new SelectListItem{Text="2003", Value="2003"},
+                                             new SelectListItem{Text="2004", Value="2004"},
+                                             new SelectListItem{Text="2005", Value="2005"},
+                                             new SelectListItem{Text="2006", Value="2006"},
+                                             new SelectListItem{Text="2007", Value="2007"},
+                                             new SelectListItem{Text="2008", Value="2008"},
+                                             new SelectListItem{Text="2009", Value="2009"},
+                                             new SelectListItem{Text="2010", Value="2010"},
+                                             new SelectListItem{Text="2011", Value="2011"},
+                                             new SelectListItem{Text="2012", Value="2012"},
+                                             new SelectListItem{Text="2013", Value="2013"},
+                                             new SelectListItem{Text="2014", Value="2014"},
+                                             new SelectListItem{Text="2015", Value="2015"},
+                                             new SelectListItem{Text="2016", Value="2016"},
+                                             new SelectListItem{Text="2017", Value="2017"},
+                                             new SelectListItem{Text="2018", Value="2018"},
+                                             new SelectListItem{Text="2019", Value="2019"},
+                                             new SelectListItem{Text="2020", Value="2020"},
+                                             new SelectListItem{Text="2021", Value="2021"},
+                                             new SelectListItem{Text="2022", Value="2022"},
+                                             new SelectListItem{Text="2023", Value="2023"},
+                                             new SelectListItem{Text="2024", Value="2024"},
+                                             new SelectListItem{Text="2025", Value="2025"},
+                                             new SelectListItem{Text="2026", Value="2026"},
+                                             new SelectListItem{Text="2027", Value="2027"},
+                                             new SelectListItem{Text="2028", Value="2028"},
+                                             new SelectListItem{Text="2029", Value="2029"},
+                                            new SelectListItem{Text="2030", Value="2030"}})
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Системный блок (серийный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_sn_c)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Системный блок (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_inv_c)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (серийный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_sn_m)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Монитор (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_inv_m)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Принтер (серийный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_sn_p)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Принтер (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_inv_p)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ноутбук (серийный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_sn_n)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ноутбук (инвентарный номер):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Sys_inv_n)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип компьютера:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Type_id, ViewBag.Typecs as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наименование процессора:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Cpu_id, ViewBag.Procs as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Частота процессора:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Cpu_ch_id, ViewBag.Proc_chs as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество памяти:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Ram_id, ViewBag.Ram_obs as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Объем диска:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Hdd_id, ViewBag.Hdd_obs as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Размер монитора (дюймы):
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.M_type_id, ViewBag.Monitor_sizes as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Название монитора:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.M_name)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Название UPS:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Ups_id, ViewBag.Upss as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Инвен.номер UPS:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Ups_sys_inv)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Сетевая карта:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Ethernet, ViewBag.Ethernets as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Имя в сети:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Network)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    IP-адрес сети:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Ip)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Рабочая группа/домен:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Workgroup, ViewBag.Workstations as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Email-адрес:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Email)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Интернет (есть/нету):
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Internet, ViewBag.Changes as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ЕСЭДО:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Ecedo, ViewBag.Changes as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Руководитель подразделения (ФИО):
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Rukov_podr, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Руководитель хозчасти (ФИО):
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Rukov_xoz, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Паспорт заполнил (ФИО):
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(x => x.Passport, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата заполнения:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Data2)
+                                </td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="Добавить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

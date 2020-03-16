@@ -1,0 +1,190 @@
+﻿@model WebInventar1.Models.Diagnostic_c
+@{
+    ViewBag.Title = "Diagnostic";
+    Layout = "~/Views/Shared/_Layout_diag.cshtml";
+}
+@section scripts{
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $.validator.addMethod('date',
+            function (value, element) {
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd.mm.yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+        });    
+    </script>
+    <script>
+        $(function () {
+            $("#Data").datepicker();
+        });
+    </script>
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Диагностика
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="12 new messages." class="well top-block" href="#">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Диагностика</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(m => m.Id)
+                            <tr>
+                                <td>
+                                    Наименование организации:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Name_org, ViewBag.Organizations as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип диагностики:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Name_d, ViewBag.Name_d_spr as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип устройства:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Type_d, ViewBag.Devices as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кабинет:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Cab_d, ViewBag.Cabinets as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Причина диагностики:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Reason_p, ViewBag.Reason_p_spr as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Результат диагностики:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Reason_r, ViewBag.Reason_r_spr as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Заключение диагностики:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Conclusion_r)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО программиста:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Engineer_r, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО руководителя подразделения:
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Director_r, ViewBag.Workers as SelectList)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата диагностики:
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => x.Data_r)
+                                </td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="Изменить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

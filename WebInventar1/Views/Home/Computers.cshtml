@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebInventar1.Models.CompWithelement>
+@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Компьютеры
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Список компьютеров</h2>
+                    </div>
+                    <div class="box-content">
+                        Всего компьютеров - @ViewBag.count
+                        <br>
+                        @Html.ActionLink("Добавить", "Computer_add", new { @class = "btn btn-danger" })
+                        <br>
+                        @using (Html.BeginForm("Computers", "Home", FormMethod.Get))
+                        {
+                            <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="поиск" />
+                            <br>
+                            <input type="submit" value="Поиск" class="btn btn-default" />
+                            <br>
+                        }
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            <thead>
+                                <tr>
+                                    <th>Кабинет</th>                                    
+                                    <th>Инв.номер монитора</th>
+                                    <th>Инв.номер системника</th>
+                                    <th>Инв.номер принтера</th>
+                                    <th>Инв.номер ноутбука</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var b in Model)
+                                {
+                                    <tr>
+                                        <td>@b.Cabinet.Name</td>                                        
+                                        <td class="center">@b.Computer.Sys_inv_m</td>
+                                        <td class="center">@b.Computer.Sys_inv_c</td>
+                                        <td class="center">@b.Computer.Sys_inv_p</td>
+                                        <td class="center">@b.Computer.Sys_inv_n</td>
+                                        <td class="center">
+                                            <span class="label-success label label-default"></span>
+                                        </td>
+                                        <td class="center">
+                                            @Html.ActionLink("Просмотр", "Computer_view", new { ID = @b.Computer.CompID }, new { @class = "btn btn-success" })                                                                                            
+                                            @Html.ActionLink("Редактирование", "Computer_edit", new { ID = @b.Computer.CompID }, new { @class = "btn btn-info" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

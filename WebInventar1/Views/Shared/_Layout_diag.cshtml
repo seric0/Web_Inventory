@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Muhammad Usman
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>WebInventar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+
+    <!-- The styles -->
+    <link href="~/Content/bootstrap-cerulean.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/charisma-app.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery/dist/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="index.html">
+                <img alt="" src="img/logo20.png" class="hidden-xs" />
+                <span>WebInventar</span>
+            </a>
+
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="#"> Отчеты</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">Техническое обслуживание</li>
+                            <li>
+                                @Html.ActionLink("Компьютер/Ноутбук", "Diagnostic_comp", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Принтер/Мфу", "Diagnostic_print", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сервер", "Diagnostic_server", new { @class = "ajax-link" })
+                            </li>
+                            <li class="nav-header">Резервное копирование/восстановление</li>
+                            <li>
+                                @Html.ActionLink("Копирование/восстановление", "Backup", new { @class = "ajax-link" })
+                            </li>
+                            <li class="nav-header">Ремонт</li>
+                            <li>
+                                @Html.ActionLink("Компьютер/Ноутбук", "Repair", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Принтер/Мфу", "Diagnostic_print", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сервер", "Diagnostic_server", new { @class = "ajax-link" })
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+
+            @RenderBody()
+
+        </div>
+
+    </div><!--/.fluid-container-->   
+    
+</body>
+</html>

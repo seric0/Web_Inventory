@@ -1,0 +1,175 @@
+﻿@model WebInventar1.Models.Server_room
+@{
+    ViewBag.Title = "Server_room";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Ризограф
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Серверная комната</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(m => m.Id)
+                            <tr>
+                                <td>
+                                    Наименование кабинета:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Name_cab)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Номер кабинета:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Cab_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Этаж:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Floor_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Количество этажей:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Level_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Ширина комнаты (м):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Width_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Длина комнаты (м):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Length_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Высота комнаты (м):
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Height_server)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип двери:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Door_type)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Тип замка:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Lock_type)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Электропитание:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Power_supply)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Освещение:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Lighting)
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <td>
+                                    ФИО ответственного лица:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Fio_admin)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата заполнения:
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => x.Data)
+                                </td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="Добавить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

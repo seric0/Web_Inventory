@@ -1,0 +1,206 @@
+﻿@model WebInventar1.Models.Programm
+@{
+    ViewBag.Title = "Programm";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Программы
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Программы @ViewBag.Id</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm("Softwareedit", "Home", FormMethod.Post))
+                    {
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        @Html.ValidationSummary()
+                        @Html.HiddenFor(m => m.ProgID)
+                        <tr>
+                            <td>
+                                Операционная система:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Os_id, ViewBag.Os as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Офисный пакет программ:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Office_id, ViewBag.Offices as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Антивирусная программа:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Antivir_id, ViewBag.Antivirus as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Графическая программа:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Grapfic_id, ViewBag.Grafics as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Браузер:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Browser_id, ViewBag.Browsers as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Программа для создания архивов:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Arhivator_id, ViewBag.Arhivators as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Бухгалтерская программа:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Buxgalter_id, ViewBag.Buxgalters as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Портал Egov:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Egov, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Амбулаторно-поликлиническая помощь:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.App, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Информационная система Лекарственного обеспечения:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Islo, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                АИС Поликлиника:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Aic, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Регистр прикрепленного населения:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Rpn, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Электронный регистр стационарных больных:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Ersb, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Бюро госпитализации:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Bg, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ИС ДКПН:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Dkpn, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Система управления ресурсами:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Sur, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Регистр беременных и Женщин фертильного возраста:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Rb, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ИС Диабет:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Diabet, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ИС Почка:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Pochka, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Комплексная медицинская информационная система:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Kmis, ViewBag.Changes as SelectList)
+                            </td>
+                        </tr>
+                    </table>
+                        <p><input type="submit" value="Изменить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->
+@section scripts{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-datetimepicker.min.js"></script>
+}

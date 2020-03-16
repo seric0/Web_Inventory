@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebInventar1.Models.Office>
+@{
+    ViewBag.Title = "Office";
+    Layout = "~/Views/Shared/_Layout_spr.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Офис
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Список программного обеспечения (Офис)</h2>
+                    </div>
+                    <div class="box-content">
+                        Всего записей - @ViewBag.count
+                        <br>
+                        @Html.ActionLink("Добавить", "Officeadd", new { @class = "btn btn-danger" })
+                        <br>
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            <thead>
+                                <tr>
+                                    <th>Наименование</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var b in Model)
+                                {
+                                    <tr>
+                                        <td>@b.Name</td>
+                                        <td class="center">
+                                            <span class="label-success label label-default">1</span>
+                                        </td>
+                                        <td class="center"></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

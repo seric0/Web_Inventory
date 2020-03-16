@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebInventar1.Models.Diagnostic>
+@addTagHelper *, WebInventar
+@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                <a href="#">Компьютеры</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Список компьютеров</h2>
+                </div>
+                <div class="box-content">
+                    Всего компьютеров - @ViewBag.count
+                    <br>
+                    @Html.ActionLink("Добавить", "Diagnosticadd", new { @class = "btn btn-danger" })
+                    <br>
+                    @using (Html.BeginForm("Diagnostic_print", "Home", FormMethod.Get))
+                    {
+                        <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="поиск" />
+                        <br>
+                        <input type="submit" value="Поиск" class="btn btn-default" />
+                        <br>
+                    }
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        <thead>
+                            <tr>
+                                <th>Название организации</th>
+                                <th>Кабинет</th>
+                                <th>Диагностические мероприятия</th>
+                                <th>Заключение</th>
+                                <th>ФИО техника</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var b in Model)
+                            {
+                            <tr>
+                                <td>@b.Organization.Name_org</td>
+                                <td class="center">@b.Name_d_spr.Name</td>
+                                <td class="center">@b.Cabinet.Name</td>
+                                <td class="center">@b.Reason_p_spr.Name</td>
+                                <td class="center">@b.Worker.Name</td>
+                                <td class="center">
+                                    <span class="label-success label label-default">1</span>
+                                </td>
+                                <td class="center">
+                                    @Html.ActionLink("Редактировать", "Diagnosticedit", new { ID = @b.Diagnostic_c.Id }, new { @class = "btn btn-info" })
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Muhammad Usman
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>Reports WebInventar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+
+    <!-- The styles -->
+    <link href="~/Content/bootstrap-cerulean.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/charisma-app.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="index.html">
+                <img alt="" src="img/logo20.png" class="hidden-xs" />
+                <span>WebInventar</span>
+            </a>
+
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="#"> Отчеты</a></li>
+            </ul>
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-sm hidden-xs"> @ViewBag.user</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Профиль</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">Компьютерная техника и программное обеспечение</li>
+                            <li>
+                                @Html.ActionLink("Компьютеры", "ReportComp", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("МФУ/Принтеры", "ReportPrint", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Программное обеспечение", "ReportSoft", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Компьютеры и Принтеры", "ReportCompPrint", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сетевое оборудование", "ReportNetwork", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Серверное оборудование", "ReportServer", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Комплектующие", "ReportComponent", new { @class = "ajax-link" })
+                            </li>
+                            <li class="nav-header hidden-md">Техническое обслуживание и ремонт</li>
+                            <li>
+                                @Html.ActionLink("Диагностика и Ремонт", "Diagnostic_comp", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Резервное копирование и восстановление", "Diagnostic_comp", new { @class = "ajax-link" })
+                            </li>
+                            <li class="nav-header hidden-md">Общий свод</li>
+                            <li>
+                                @Html.ActionLink("Свод по оргтехнике", "Organization", new { @class = "ajax-link" })
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+
+            @RenderBody()
+
+        </div>
+
+    </div><!--/.fluid-container-->   
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

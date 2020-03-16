@@ -1,0 +1,103 @@
+﻿@model WebInventar1.Models.User
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Добавление пользователя
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.count</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Добавление пользователя</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm("User_add", "Home", FormMethod.Post))
+                    {
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        @Html.ValidationSummary()
+                        @Html.HiddenFor(m => m.Id)
+                        <tr>
+                            <td>
+                                ФИО:
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => x.Fio)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Должность:
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => x.Dolgnost)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Логин:
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => x.LoginUser)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Пароль:
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => x.Passwd)
+                            </td>
+                        </tr>
+                    </table>
+                        <p><input type="submit" value="Добавить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

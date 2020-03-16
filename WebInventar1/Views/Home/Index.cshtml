@@ -1,0 +1,83 @@
+﻿@model WebInventar1.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Muhammad Usman
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>WebInventar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+
+    <!-- The styles -->
+    <link href="~/Content/bootstrap-cerulean.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/charisma-app.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="ch-container">
+        <div class="row">
+
+            <div class="row">
+                <div class="col-md-12 center login-header">
+                    <h2>WebInventar</h2>
+                </div>
+                <!--/span-->
+            </div><!--/row-->
+
+            <div class="row">
+                <div class="well col-md-5 center login-box">
+                    <div class="alert alert-info">
+                        Войдите под своим логином и паролем.
+                    </div>
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary()
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"></span>
+                            @Html.TextBoxFor(x => x.LoginUser, new { @class = "form-control" })
+                        </div>
+                        <div class="clearfix"></div><br>
+
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"></span>
+                            @Html.PasswordFor(x => x.Passwd, new { @class = "form-control" })
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="clearfix"></div>
+
+                        <p class="center col-md-5">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </p>
+                    }
+                </div>
+                <!--/span-->
+            </div><!--/row-->
+        </div><!--/fluid-row-->
+
+    </div><!--/.fluid-container-->
+    <!-- external javascript -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

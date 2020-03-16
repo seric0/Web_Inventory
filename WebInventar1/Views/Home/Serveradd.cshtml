@@ -1,0 +1,430 @@
+﻿@model WebInventar1.Models.Server
+@{
+    ViewBag.Title = "Server";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+@section scripts{
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $.validator.addMethod('date',
+            function (value, element) {
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd.mm.yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+        });    
+    </script>
+    <script>
+        $(function () {
+            $("#Data").datepicker();
+        });
+    </script>
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Сервер
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.compcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Сервер</h2>
+                </div>
+                <div class="box-content">
+                    @using (Html.BeginForm())
+                    {
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        @Html.ValidationSummary()
+                        @Html.HiddenFor(m => m.ServerID)
+                        <tr>
+                            <td>
+                                Наименование сервера
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Name_server, ViewBag.Server_type as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Отделение:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Departament, ViewBag.Otdels as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Серверная комната:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Room_id, ViewBag.Server_room as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ФИО администратора:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.FIO_admin, ViewBag.Workers as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Телефон:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Phone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ФИО ответ.лица:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.FIO_otvet, ViewBag.Workers as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Серийный номер:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Server_sn)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Инвентарный номер:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Server_inv)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Количество процессоров:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Cpu_col)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Количество дисков:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Hdd_col)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Тип стримера:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Strimer, ViewBag.Server_strimer as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Видео:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Video, ViewBag.Server_video as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Количество сетевых карт:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Ethernet, ViewBag.Server_ethernet as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Скорость сетевых карт:
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Ethernet_sp)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Монитор (серийный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Mon_bl_sn)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Монитор (инвентарный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Mon_bl_inv)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Принтер (серийный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Printer_sn)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Принтер (инвентарный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Printer_inv)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Иточник бесперебойного питания (серийный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Ibp_sn)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Иточник бесперебойного питания (инвентарный номер):
+                            </td>
+                            <td>
+                                @Html.EditorFor(m => m.Ibp_inv)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ФИО мат.лица:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Fio_mat, ViewBag.Workers as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ФИО руководителя отделения:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Rukov_dep, ViewBag.Workers as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Дата поставки сервера:
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Data)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Модель сервера:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Model_id, ViewBag.Server_model as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Тип процессора:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Cpu_type_id, ViewBag.Server_cpu as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Частота процессора:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Cpu_ch_id, ViewBag.Proc_ch as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Тип жеского диска:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Hdd_type_id, ViewBag.Server_hdd_type as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Объем жеского диска:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Hdd_ob_id, ViewBag.Hdd_ob as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Наличие DVD-привода:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Dvd_id, ViewBag.Server_dvd as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Тип DVD-привода:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Dvd_type_id, ViewBag.Server_dvd_type as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Скорость чтения DVD-привода:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Dvd_sp_id, ViewBag.Server_dvd_sp as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Объем оперативной памяти:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Ram_id, ViewBag.Ram_ob as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Наличие звукой карты:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Sound_id, ViewBag.Server_sound as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Тип видеокарты:
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Video_type_id, ViewBag.Server_video_type as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Монитор (модель):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Monitor_model_id, ViewBag.Monitor_name as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Монитор (размер):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Mtype_id, ViewBag.Monitor_size as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Принтер (модель):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Printer_model_id, ViewBag.Printer_name as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Иточник бесперебойного питания (модель):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Ibp_model_id, ViewBag.Ibps as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Клавиатура (тип подключения):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Keyboard_id, ViewBag.Input_type as SelectList)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Мышь (тип подключения):
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Mouse_id, ViewBag.Input_type as SelectList)
+                            </td>
+                        </tr>
+                    </table>
+                        <p><input type="submit" value="Добаить" class="btn btn-success" /></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

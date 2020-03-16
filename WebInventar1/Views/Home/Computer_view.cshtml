@@ -1,0 +1,332 @@
+﻿@model IEnumerable<WebInventar1.Models.CompWithelement>
+@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Просмотр компьютера
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Просмотр компьютера</h2>
+                    </div>
+                    <div class="box-content">
+                        @foreach (var Model in Model)
+                        {
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                <tr>
+                                    <td>
+                                        Структурное подразделение
+                                    </td>
+                                    <td>
+                                        @Model.Otdel.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ФИО:
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Должность:
+                                    </td>
+                                    <td>
+                                        @Model.Position.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Кабинет:
+                                    </td>
+                                    <td>
+                                        @Model.Cabinet.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Дата выпуска:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Data
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Системный блок (серийный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_sn_c
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Системный блок (инвентарный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_inv_c
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Монитор (серийный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_sn_m
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Монитор (инвентарный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_inv_m
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Принтер (серийный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_sn_p
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Принтер (инвентарный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_inv_p
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ноутбук (серийный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_sn_n
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ноутбук (инвентарный номер):
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Sys_inv_n
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Тип компьютера:
+                                    </td>
+                                    <td>
+                                        @Model.Typec.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Наименование процессора:
+                                    </td>
+                                    <td>
+                                        @Model.Proc.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Частота процессора:
+                                    </td>
+                                    <td>
+                                        @Model.Proc_ch.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Количество памяти:
+                                    </td>
+                                    <td>
+                                        @Model.Ram_ob.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Объем диска:
+                                    </td>
+                                    <td>
+                                        @Model.Hdd_ob.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Размер монитора (дюймы):
+                                    </td>
+                                    <td>
+                                        @Model.Monitor_size.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Название монитора:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.M_name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Название UPS:
+                                    </td>
+                                    <td>
+                                        @Model.Ups.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Инвен.номер UPS:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Ups_sys_inv
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Сетевая карта:
+                                    </td>
+                                    <td>
+                                        @Model.Ethernet.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Имя в сети:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Network
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        IP-адрес сети:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Ip
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Рабочая группа/домен:
+                                    </td>
+                                    <td>
+                                        @Model.Workstation.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email-адрес:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Email
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Интернет (есть/нету):
+                                    </td>
+                                    <td>
+                                        @Model.Internet.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ЕСЭДО:
+                                    </td>
+                                    <td>
+                                        @Model.Ecedo.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Руководитель подразделения (ФИО):
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Руководитель хозчасти (ФИО):
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Паспорт заполнил (ФИО):
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Дата заполнения:
+                                    </td>
+                                    <td>
+                                        @Model.Computer.Data2
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

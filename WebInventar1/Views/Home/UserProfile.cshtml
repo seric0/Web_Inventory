@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebInventar1.Models.User>
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                Пользователи
+            </li>
+        </ul>
+    </div>
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего компьютеров</div>
+                <div>@ViewBag.count</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                <div>Всего ноутбуков</div>
+                <div>@ViewBag.noutcount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                <div>Всего принтеров</div>
+                <div>@ViewBag.printercount</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                <div>Всего комплектующих</div>
+                <div>@ViewBag.componentcount</div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Пользователи</h2>
+                </div>
+                <div class="box-content">                    
+                    @Html.ActionLink("Добавить пользователя", "User_add", new { @class = "btn btn-danger" })
+                    <br>
+                    @using (Html.BeginForm("Users", "Home", FormMethod.Get))
+                    {
+                        <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="поиск" />
+                        <br>
+                        <input type="submit" value="Поиск" class="btn btn-default" />
+                        <br>
+                    }
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        <thead>
+                            <tr>
+                                <th>Логин</th>
+                                <th>ФИО</th>
+                                <th>Должность</th>
+                                <th>Дата создания</th>                                  
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var b in Model)
+                            {
+                                <tr>
+                                    <td>@b.LoginUser</td>
+                                    <td class="center">@b.Fio</td>
+                                    <td class="center">@b.Dolgnost</td>
+                                    <td class="center">@b.Data</td>                                    
+                                    <td class="center">                                        
+                                    </td>
+                                    <td class="center">
+                                        @Html.ActionLink("Восстановление пароля", "User_edit", new { ID = @b.Id }, new { @class = "btn btn-info" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

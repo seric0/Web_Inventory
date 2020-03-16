@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Muhammad Usman
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>WebInventar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+
+    <!-- The styles -->
+    <link href="~/Content/bootstrap-cerulean.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/charisma-app.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="index.html">
+                <img alt="" src="img/logo20.png" class="hidden-xs" />
+                <span>WebInventar</span>
+            </a>
+
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="#"> Отчеты</a></li>
+            </ul>
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-sm hidden-xs"> @ViewBag.user</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Профиль</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">Справочники организации</li>
+                            <li>
+                                @Html.ActionLink("Организация", "Organization", new { @class = "ajax-link" }) 
+                            </li>
+                            <li>
+                                @Html.ActionLink("Отделения/Подразделения", "Otdel", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Кабинеты", "Cabinet", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сотрудники", "Worker", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Должности", "Position", new { @class = "ajax-link" })
+                            </li>
+                            <li class="nav-header">Справочники (компьютерная техника)</li>
+                            <li>
+                                @Html.ActionLink("Процессоры (Наименование)", "Proc", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Процессоры (Частота)", "Proc_ch", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Объем памяти", "Ram", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Объем жесткого диска", "Hdd", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Рабочая группа/Домен", "Worksation", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Операционная система", "Os", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Офисная программа", "Office", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Антивирус", "Antivirus", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Браузер", "Browser", new { @class = "ajax-link" })
+                            </li>                            
+                            <li>
+                                @Html.ActionLink("Комплектующие (Тип)", "Component_type", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сетевое оборудование (Наименование)", "Network_hard_name", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Сетевое оборудование (Тип)", "Network_hard_type", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Принтер/МФУ (Наименование)", "Printer_name", new { @class = "ajax-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Принтер/МФУ (Тип картриджа)", "Printer_type", new { @class = "ajax-link" })
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+
+            @RenderBody()
+
+        </div>
+
+    </div><!--/.fluid-container-->   
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

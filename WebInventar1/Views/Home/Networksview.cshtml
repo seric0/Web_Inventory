@@ -1,0 +1,156 @@
+﻿@model IEnumerable<WebInventar1.Models.Nets>
+@{
+    ViewBag.Title = "Network";
+    Layout = "~/Views/Shared/_Layout_inv".cshtml;
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Сетевое оборудование
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Сетевое оборудование</h2>
+                    </div>
+                    <div class="box-content">
+                        @foreach (var Model in Model)
+                        {
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                <tr>
+                                    <td>
+                                        Структурное подразделение
+                                    </td>
+                                    <td>
+                                        @Model.Otdel.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ФИО:
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Должность:
+                                    </td>
+                                    <td>
+                                        @Model.Network.Dolg
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Кабинет:
+                                    </td>
+                                    <td>
+                                        @Model.Cabinet.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Телефон:
+                                    </td>
+                                    <td>
+                                        @Model.Network.Phone
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Дата установки:
+                                    </td>
+                                    <td>
+                                        @Model.Network.Data
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Площадка размещения:
+                                    </td>
+                                    <td>
+                                        @Model.Platform.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Руководитель подразделения:
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Руководитель хозяйственной части:
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Паспорт заполнил:
+                                    </td>
+                                    <td>
+                                        @Model.Worker.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Дата заполнения:
+                                    </td>
+                                    <td>
+                                        @Model.Network.Data2
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

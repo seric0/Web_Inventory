@@ -1,0 +1,185 @@
+﻿@model WebInventar1.Models.Risograph
+@{
+    ViewBag.Title = "Risograph";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Ризограф
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Ризограф</h2>
+                    </div>
+                    <div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            <tr>
+                                <td>
+                                    Инвентарный номер:
+                                </td>
+                                <td>
+                                    @Model.Riso_inv
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Наименование:
+                                </td>
+                                <td>
+                                    @Model.Riso_name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Формат печати:
+                                </td>
+                                <td>
+                                    @Model.Riso_type
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Формат бумаги для печати (мм):
+                                </td>
+                                <td>
+                                    @Model.Riso_format
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Разрешение сканирования, dpi:
+                                </td>
+                                <td>
+                                    @Model.Riso_optical
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Скорость печати, листов/минута:
+                                </td>
+                                <td>
+                                    @Model.Riso_speed
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Интерфейс пользователя:
+                                </td>
+                                <td>
+                                    @Model.Riso_interface
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Краска (количество):
+                                </td>
+                                <td>
+                                    @Model.Riso_ink_col
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Краска (тип):
+                                </td>
+                                <td>
+                                    @Model.Riso_ink_type
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Мастер-пленка (тип):
+                                </td>
+                                <td>
+                                    @Model.Riso_master_type
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Электропитание:
+                                </td>
+                                <td>
+                                    @Model.Power_supply
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Масса, кг:
+                                </td>
+                                <td>
+                                    @Model.Riso_weight
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кабинет:
+                                </td>
+                                <td>
+                                    @Model.Cab
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ФИО ответственного лица:
+                                </td>
+                                <td>
+                                    @Model.Fio_admin
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Дата заполнения:
+                                </td>
+                                <td>
+                                    @Model.Data
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- content ends -->

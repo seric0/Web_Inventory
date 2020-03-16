@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebInventar1.Models.Backups>
+@{
+    ViewBag.Title = "Backup";
+    Layout = "~/Views/Shared/_Layout_diag.cshtml";
+}
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+            </li>
+            <li>
+                <a href="#">Резервное копирование и восстановление</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2> Резервное копирование и восстановление</h2>
+                </div>
+                <div class="box-content">
+                    @Html.ActionLink("Добавить", "Backup_add", new { @class = "btn btn-danger" })
+                    <br>
+                    @using (Html.BeginForm("Backup", "Home", FormMethod.Get))
+                    {
+                        <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="поиск" />
+                        <br>
+                        <input type="submit" value="Поиск" class="btn btn-default" />
+                        <br>
+                    }
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        <thead>
+                            <tr>
+                                <th>Кабинет</th>
+                                <th>Тип (Копирование/Восстановление)</th>
+                                <th>Объект копирования/восстановления</th>                                
+                                <th>Результат копирования/восстановления</th>
+                                <th>Сотрудник выполнявший копирование/восстановление</th>                                
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var b in Model)
+                            {
+                            <tr>
+                                <td>@b.Cabinet.Name</td>
+                                <td class="center">@b.Type_g.Name</td>
+                                <td class="center">@b.Vid_copy.Name</td>                                
+                                <td class="center">@b.Result_g.Name</td>
+                                <td class="center">@b.Worker.Name</td>                                
+                                <td class="center">
+                                    <span class="label-success label label-default">1</span>
+                                </td>
+                                <td class="center">                                    
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content ends -->

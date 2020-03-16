@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebInventar1.Models.CompWithelement>
+@{
+    ViewBag.Title = "Computer";
+    Layout = "~/Views/Shared/_Layout_inv.cshtml";
+}
+    <div id="content" class="col-lg-10 col-sm-10">
+        <!-- content starts -->
+        <div>
+            <ul class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Главная", "Desktop", new { @class = "ajax-link" })
+                </li>
+                <li>
+                    Просмотр компьютера
+                </li>
+            </ul>
+        </div>
+        <div class=" row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего компьютеров - @ViewBag.compcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего компьютеров</div>
+                    <div>@ViewBag.compcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего ноутбуков - @ViewBag.noutcount" class="well top-block" href="/Home/Computers">
+
+                    <div>Всего ноутбуков</div>
+                    <div>@ViewBag.noutcount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего принтеров - @ViewBag.printercount" class="well top-block" href="/Home/Printers">
+
+                    <div>Всего принтеров</div>
+                    <div>@ViewBag.printercount</div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <a data-toggle="tooltip" title="Всего комплектующих - @ViewBag.componentcount" class="well top-block" href="/Home/Component">
+
+                    <div>Всего комплектующих</div>
+                    <div>@ViewBag.componentcount</div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2> Просмотр компьютера</h2>
+                    </div>
+                    <br>
+                    <div class="tabs">
+
+                        <ul class="tabs__caption">
+                            <li class="active">Первая вкладка</li>
+                            <li>Вторая вкладка</li>                           
+                        </ul>
+
+                        <div class="tabs__content  active">
+                            @await Html.PartialAsync("Computer_view")
+                        </div>
+
+                        <div class="tabs__content">
+                            @await Html.PartialAsync("Computer_view")
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+$(function() {
+	$("ul.tabs").tabs("div.panes > div");
+});
+</script>
+<!-- content ends -->
